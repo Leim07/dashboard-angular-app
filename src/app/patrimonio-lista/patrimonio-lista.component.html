@@ -1,0 +1,70 @@
+<h1 class="mt-4">Patrimônio Ativo</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Acompanhamento</li>
+</ol>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <button class="btn btn-info" (click)="novoCadastro()" >
+                <i class="fa fa-plus"></i>Adicionar</button>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-dark table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Valor do Patrimônio</th>
+                    <th scope="col">Mês</th>
+                    <th scope="col">Ano</th>
+                    <th scope="col">Redimento Mensal</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Deletar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let patrimonio of patrimonios">
+                    <th scope="row">{{ patrimonio.id}}</th>
+                    <td>{{ patrimonio.valor}}</td>
+                    <td>{{ patrimonio.nomeMes}}</td>
+                    <td>{{ patrimonio.ano}}</td>
+                    <td>---</td>
+                    <td>{{ patrimonio.data}}</td>                    
+                    <td>
+                      <button class="btn btn-primary"
+                        routerLink="/patrimonio/form/{{patrimonio.id}}">
+                        <i class="fa fa-edit"></i>
+                      </button>
+                    </td> 
+                    <td>                      
+                      <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete" (click)="deleteselect(patrimonio)">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                    </td>                      
+                  </tr>                 
+                </tbody>
+              </table>
+        </div>
+    </div>
+  <!-- Modal -->
+  <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">confimação</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" *ngIf="patrimonioSelect">
+          Deseja realmente deletar o Patrimônio? {{ patrimonioSelect.id }}?
+        </div>
+        <div class="modal-footer">        
+          <button type="button" class="btn btn-primary" (click)="doDelete()" data-bs-dismiss="modal">Confirmar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

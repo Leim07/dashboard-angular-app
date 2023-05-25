@@ -1,0 +1,68 @@
+<h1 class="mt-4">{{ patrimonio.id ? 'Editar' : 'Cadastrar'}}</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Valor do Patrimônio</li>
+</ol>
+<div class="container">
+    <form #patrimonioForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" *ngIf="success == true">
+                    Dados salvos e atualizados!
+                  </div>
+                  <div class="alert alert-danger" *ngFor="let erro of errors">
+                   {{erro}}
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>ID:</label>
+                    <input type="text" class="form-control" disabled="true"
+                    [ngModel]="patrimonio.id" name="id">
+                </div>                
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Data:</label>
+                    <input type="text" class="form-control" [ngModel]="patrimonio.data" name="data" disabled="true">
+                </div>
+            </div>            
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Valor do Patrimônio: *</label>
+                    <input type="text" class="form-control" [(ngModel)]="patrimonio.valor" name="valor">
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label>Mês: *</label>
+                    <input type="number" class="form-control" [(ngModel)]="patrimonio.mes" name="mes">
+                </div>                
+            </div>   
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label>Ano: *</label>
+                    <input type="number" class="form-control" [(ngModel)]="patrimonio.ano" name="ano">
+                </div>
+            </div>
+            
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-success" *ngIf="!patrimonio.id">
+                    <i class="fa fa-save"></i> Salvar
+                </button>
+
+                <button type="submit" class="btn btn-primary" *ngIf="patrimonio.id">
+                    <i class="fa fa-sync-alt"></i> Atualizar
+                </button>
+
+                <button type="button" class="btn btn-danger ms-2" (click)="doVoltar()" >
+                    <i class="fa fa-arrow-left"></i> Voltar
+                </button>
+            </div>            
+        </div>        
+    </form>
+</div>
